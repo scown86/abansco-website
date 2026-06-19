@@ -5,6 +5,8 @@ import { useState } from "react";
 import CategoryNav from "./CategoryNav";
 import SideMenu from "./SideMenu";
 import LoginModal from "./LoginModal";
+import SignupModal from "./SignupModal";
+
 
 const navItems = [
   "All",
@@ -21,12 +23,29 @@ const navItems = [
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
+  const [signupOpen, setSignupOpen] = useState(false);
 
   return (
     <>
-      <SideMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
+       <SideMenu
+      open={menuOpen}
+      onClose={() => setMenuOpen(false)}
+      onLoginOpen={() => setLoginOpen(true)}
+      onSignupOpen={() => setSignupOpen(true)}
+    />
 
-<LoginModal open={loginOpen} onClose={() => setLoginOpen(false)} />
+    <LoginModal
+      open={loginOpen}
+      onClose={() => setLoginOpen(false)}
+      onSignupOpen={() => setSignupOpen(true)}
+    />
+
+    <SignupModal
+      open={signupOpen}
+      onClose={() => setSignupOpen(false)}
+      onLoginOpen={() => setLoginOpen(true)}
+    />
+
       <header className="sticky top-0 z-50 border-b border-gray-200 bg-white">
         <div className="mx-auto flex max-w-7xl items-center gap-6 px-4 py-5">
           <a href="/" className="flex shrink-0 items-center">

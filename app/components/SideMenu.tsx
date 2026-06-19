@@ -3,6 +3,8 @@ import Image from "next/image";
 type SideMenuProps = {
   open: boolean;
   onClose: () => void;
+  onLoginOpen: () => void;
+  onSignupOpen: () => void;
 };
 
 const navItems = [
@@ -17,7 +19,12 @@ const navItems = [
   "Deals",
 ];
 
-export default function SideMenu({ open, onClose }: SideMenuProps) {
+export default function SideMenu({
+  open,
+  onClose,
+  onLoginOpen,
+  onSignupOpen,
+}: SideMenuProps) {
   if (!open) return null;
 
   return (
@@ -46,6 +53,7 @@ export default function SideMenu({ open, onClose }: SideMenuProps) {
             width={420}
             height={130}
             className="h-auto w-full max-w-[310px]"
+            style={{ height: "auto" }}
             priority
           />
 
@@ -75,19 +83,27 @@ export default function SideMenu({ open, onClose }: SideMenuProps) {
           <h3 className="mb-5 text-xl font-black">Account</h3>
 
           <div className="space-y-2 text-base font-medium">
-            <a
-              href="/login"
-              className="block rounded-xl px-3 py-3 hover:bg-gray-50 hover:text-blue-600"
-            >
-              Sign in
-            </a>
+<button
+  type="button"
+  onClick={() => {
+    onClose();
+    onLoginOpen();
+  }}
+  className="block w-full rounded-xl px-3 py-3 text-left hover:bg-gray-50 hover:text-blue-600"
+>
+  Sign in
+</button>
 
-            <a
-              href="/register"
-              className="block rounded-xl px-3 py-3 hover:bg-gray-50 hover:text-blue-600"
+            <button
+              type="button"
+              onClick={() => {
+                onClose();
+                onSignupOpen();
+              }}
+              className="block w-full rounded-xl px-3 py-3 text-left hover:bg-gray-50 hover:text-blue-600"
             >
               Create account
-            </a>
+            </button>
 
             <a
               href="/cart"
